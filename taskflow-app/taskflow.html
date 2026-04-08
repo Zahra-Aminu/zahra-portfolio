@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>TaskFlow</title>
+<link href="taskflow.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+<div class="topbar">
+  <div class="topbar-logo">task<span>//</span>flow</div>
+  <div class="topbar-meta" id="projLabel">website_redesign.proj</div>
+  <div class="topbar-right">
+    <input type="text" id="searchInput" placeholder="search tasks..." />
+    <button class="btn-add" onclick="openModal()">+ new task</button>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-n" id="stTotal">0</div><div class="stat-label">Total</div></div>
+  <div class="stat-item"><div class="stat-n a" id="stProg">0</div><div class="stat-label">In Progress</div></div>
+  <div class="stat-item"><div class="stat-n g" id="stDone">0</div><div class="stat-label">Done</div></div>
+  <div class="stat-item"><div class="stat-n" id="stPct">0%</div><div class="stat-label">Velocity</div></div>
+</div>
+
+<div class="board">
+  <div class="col">
+    <div class="col-head" style="border-top:3px solid var(--faint)">
+      <span class="col-label">Backlog</span>
+      <span class="col-n" id="cnt-todo">0</span>
+    </div>
+    <div class="col-body" id="col-todo"></div>
+  </div>
+  <div class="col">
+    <div class="col-head" style="border-top:3px solid var(--amber)">
+      <span class="col-label" style="color:var(--amber)">In Progress</span>
+      <span class="col-n" id="cnt-inprogress">0</span>
+    </div>
+    <div class="col-body" id="col-inprogress"></div>
+  </div>
+  <div class="col">
+    <div class="col-head" style="border-top:3px solid var(--green)">
+      <span class="col-label" style="color:var(--green)">Done</span>
+      <span class="col-n" id="cnt-done">0</span>
+    </div>
+    <div class="col-body" id="col-done"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h2>New Task</h2>
+    <div class="fg"><label>Title</label><input type="text" id="tTitle" placeholder="What needs doing?"/></div>
+    <div class="fg"><label>Category</label>
+      <select id="tTag">
+        <option value="dev">Development</option>
+        <option value="design">Design</option>
+        <option value="qa">QA / Testing</option>
+        <option value="review">Review</option>
+      </select>
+    </div>
+    <div class="fg"><label>Priority</label>
+      <select id="tPri">
+        <option value="high">High</option>
+        <option value="med">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+    <div class="fg"><label>Due Date</label><input type="date" id="tDue"/></div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">cancel</button>
+      <button class="btn-save" onclick="addTask()">save_task()</button>
+    </div>
+  </div>
+</div>
+<script src="taskflow.js"></script>
+</body>
+</html>
